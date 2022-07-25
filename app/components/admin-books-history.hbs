@@ -1,0 +1,32 @@
+<div class="admin-sticky">
+    <AdminNavBar @bookhistorypage={{true}}/>
+    <div class="home-filters">
+        <Input @value={{this.query}} {{on "keyup" (fn this.filter false)}} class="home-input" placeholder="Search Book"/>
+        <span class="show" {{on "click" (fn this.filter true)}} title="Asc or Desc">
+                        {{#if this.sortBtn}}
+                        <i class="fa fa-sort-alpha-asc"></i><i class="fa fa-sort-numeric-asc"></i>
+                        {{else}}
+                        <i class="fa fa-sort-alpha-desc"></i><i class="fa fa-sort-numeric-desc"></i>
+                        {{/if}}
+        </span>&ensp;
+    </div>
+</div>
+<div class="admin-container" >
+    {{#each this.results as |element|}}
+        <div class="admin-users" ><img src={{element.img}} class="admin-userlogo">
+            <div><b>{{element.title}}</b></div>
+                <div class="admin-user-history">
+                    <h1 class={{noone element.attributes}}>No one Found</h1>
+                    {{#each element.attributes as |user|}}
+                    <div ><b> <i>{{showorhide user}} </i></b></div>
+                        {{#each user.borrowed as |borrow|}}
+                        <div><b>Borrowed:</b>{{borrow.time}}</div>
+                        {{/each}}
+                        {{#each user.returned as |return|}}
+                        <div><b>Returned:</b>{{return.time}}</div>
+                        {{/each}}
+                    {{/each}}
+                </div>
+        </div>
+    {{/each}}
+</div>

@@ -1,0 +1,17 @@
+<div class="admin-navbar">
+    <div>📖 Library <b>@</b>admin</div>
+    <div>
+        {{#if @addbookspage}}
+        <span class="show" {{on "click" this.gotoHome}} title="Home" >🏠 </span>&ensp;
+        {{else}}
+        <span class="show" {{on "click" this.addBooks}}  title="Add Books" >➕ </span>&ensp;
+        {{/if}}
+        {{#if @bookhistorypage}}
+        <span class="show" {{on "click" this.gotoHome}} title="Home" >🏠 </span>&ensp;
+        {{else}}
+        <span class="show" {{on "click" this.booksHistory}}  title="User History" >📜 </span>&ensp;
+        {{/if}}
+        <span class="show" {{on "click" this.setExpiryDate}} title="Set Expiry Date for Books" >⚠️ </span>&ensp;
+        <span class="show" {{on "click" this.signOut}}  title="LogOut" > <i class="fa fa-power-off" ></i> </span>
+    </div>
+</div>

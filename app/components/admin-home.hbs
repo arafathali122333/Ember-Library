@@ -1,0 +1,54 @@
+<div class="admin-sticky">
+    <AdminNavBar/>
+    <div class="home-filters">
+        <Input @value={{this.query}} {{on "keyup" (fn this.filter false)}} class="home-input" placeholder="Search User"/>
+        <span class="show" {{on "click" (fn this.filter true)}} title="Asc or Desc">
+                        {{#if this.sortBtn}}
+                        <i class="fa fa-sort-alpha-asc"></i><i class="fa fa-sort-numeric-asc"></i>
+                        {{else}}
+                        <i class="fa fa-sort-alpha-desc"></i><i class="fa fa-sort-numeric-desc"></i>
+                        {{/if}}
+        </span>&ensp;
+    </div>
+</div>
+<div class="admin-container">
+    {{#if this.usersData.length}}
+    {{#each this.usersData as |user index|}}
+        <div class="admin-users" ><img src='../assets/images/user.png' class="admin-userlogo">
+            <div><b>{{user.userName}}</b></div>
+                        <div class="admin-user-history">
+                            <div><i><b>Borrowed</b></i></div>
+                            {{#if user.history.borrowed.length}}
+                            {{#each user.history.borrowed as |element|}}  
+                            <div  class="user-content">
+                            <div><b>BookName:</b> {{element.id}} ,</div>
+                            <div><b>BorrowedTime:</b>{{element.time}} </div>
+                            </div>
+                            {{/each}}
+                            {{else}}
+                            <div>No one Found</div>
+                            {{/if}}
+
+                            <div><i><b>Returned</b></i></div>
+                            {{#if user.history.returned.length}}
+                            {{#each user.history.returned as |element|}}
+                            <div class="user-content">
+                            <div><b>BookName:</b> {{element.id}} ,</div>
+                            <div><b>ReturnedTime:</b> {{element.time}}</div>
+                            </div>
+                            {{/each}}
+                            {{else}}
+                            <div>No one Found</div>
+                            {{/if}}
+                        </div>
+            {{#if user.borrowed.length}}
+            <span class ="admin-deleteuser" title="Doesn't Remove {{user.userName}}" {{on "click" (fn this.showAlert user.borrowed)}}>🚫</span>
+            {{else}}
+            <span class ="admin-deleteuser" title="Remove {{user.userName}}" {{on "click" (fn this.deleteUser user)}}>❌</span>
+            {{/if}}
+        </div>
+    {{/each}}
+    {{else}}
+        <div class="no-one-found">No One Found</div>
+    {{/if}}
+</div>

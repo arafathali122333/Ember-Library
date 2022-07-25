@@ -1,0 +1,80 @@
+<div class="admin-sticky">
+    <AdminNavBar @addbookspage={{true}}/>
+    <div class="add-remove-books-btn-container">
+        <span class={{if this.switchBtn "add-books-btn" "remove-books-btn"}} {{on "click" this.changeBtn}}>Add Books</span><span class={{if this.switchBtn "remove-books-btn" "add-books-btn"}} {{on "click" this.changeBtn}}>Remove Books</span>
+    </div>
+    {{#unless this.switchBtn }}
+    <div class="home-filters">
+    <Input @value={{this.query}} {{on "keyup" (fn this.filter false)}} class="home-input" placeholder="Search Book"/>
+    <span class="show" {{on "click" (fn this.filter true)}} title="Asc or Desc">
+                    {{#if this.sortBtn}}
+                    <i class="fa fa-sort-alpha-asc"></i><i class="fa fa-sort-numeric-asc"></i>
+                    {{else}}
+                    <i class="fa fa-sort-alpha-desc"></i><i class="fa fa-sort-numeric-desc"></i>
+                    {{/if}}
+    </span>&ensp;
+    <span class="show-avail-all-books" {{on "click" this.showAvailAll}}>{{if this.showBooksBtn "Show Available Books" "Show All Books"}}</span>
+    </div>
+    {{/unless}}
+</div>
+{{#if this.switchBtn}}
+<form class="add-books-container" {{on "submit" this.addBook}}>
+    <label>Book Name:</label>
+    <Input class="add-books-details" @type="text" placeholder="Enter Book Name..."  name="title" required pattern=".*\S+.*"/>
+    <label>Author:</label>
+    <Input class="add-books-details" @type="text" placeholder="Enter Author Name..."  name="author" required pattern=".*\S+.*"/>
+    <label>Country:</label>
+    <Input class="add-books-details" @type="text" placeholder="Enter Country Name..."  name="country" required pattern=".*\S+.*"/>
+    <label>No of Pages:</label>
+    <Input class="add-books-details" @type="number" placeholder="Enter Number of Pages..."  name="pages" required pattern=".*\S+.*"/>
+    <label>No of Books:</label>
+    <Input class="add-books-details" @type="number" placeholder="Enter Number of Books..."  name="noOfBooks" required pattern=".*\S+.*"/>
+    <label>Year of Published:</label>
+    <Input class="add-books-details" @type="number" placeholder="Enter Which Year of Published.."  name="year" required pattern=".*\S+.*"/>
+    <label>Book Image:</label>
+    <Input class="add-books-details" @type="file" accept="image/*" name="img" required/>
+    <button class="add-books-button" type="submit" >Submit</button>
+</form>
+{{else}}
+<div class="home-container">
+    {{#if this.showBooksBtn}}
+    {{#each this.allBooks as |element|}}
+                    <div class="book" style="height:260px;">
+                                    <img src={{element.attributes.image}} class="books-img">
+                                    <div><b><i>{{element.attributes.title}} ({{element.attributes.availablebooks}})</i></b></div>
+                                    {{#if element.attributes.isthere}}
+                                    <button class="borrow-btn" type="button" {{on "click" (fn this.removeAllBooks element.id "returned")}} >add</button>
+                                    {{#if element.attributes.availablebooks}}
+                                    <button class="borrow-btn" id="expired-return" type="button" {{on "click" (fn this.removeAllBooks element.id "borrowed")}} >remove</button>
+                                    <button class="borrow-btn" id="expired-return" type="button" {{on "click" (fn this.removeAllBooks element.id "remove")}} >Remove All</button> 
+                                    {{/if}}
+                                    {{else}}   
+                                    <button class="borrow-btn" type="button" {{on "click" (fn this.removeAllBooks element.id "replace")}} >Replace All</button>
+                                    {{/if}}  
+                    </div>
+    {{/each}}
+    {{else}}
+
+    {{#each this.allBooks as |element|}}
+            {{#if element.attributes.availablebooks}}
+                {{#if element.attributes.isthere}}
+                    <div class="book" style="height:260px;">
+                                    <img src={{element.attributes.image}} class="books-img">
+                                    <div><b><i>{{element.attributes.title}} ({{element.attributes.availablebooks}})</i></b></div>
+                                    {{#if element.attributes.isthere}}
+                                    <button class="borrow-btn" type="button" {{on "click" (fn this.removeAllBooks element.id "returned")}} >add</button>
+                                    {{#if element.attributes.availablebooks}}
+                                    <button class="borrow-btn" id="expired-return" type="button" {{on "click" (fn this.removeAllBooks element.id "borrowed")}} >remove</button>
+                                    <button class="borrow-btn" id="expired-return" type="button" {{on "click" (fn this.removeAllBooks element.id "remove")}} >Remove All</button> 
+                                    {{/if}}
+                                    {{else}}   
+                                    <button class="borrow-btn" type="button" {{on "click" (fn this.removeAllBooks element.id "replace")}} >Replace All</button>
+                                    {{/if}}  
+                    </div>
+                {{/if}}
+            {{/if}}
+    {{/each}}
+
+    {{/if}}
+</div>
+{{/if}}

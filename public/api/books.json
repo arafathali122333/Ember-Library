@@ -1,0 +1,101 @@
+{
+    "data": [{
+            "type": "books",
+            "id": "Things Fall Apart",
+            "attributes": {
+                "author": "Chinua Achebe",
+                "availablebooks":"3",
+                "country": "Nigeria",
+                "image": "https://i.im.ge/2022/07/23/F7ykuT.png",
+                "pages": 209,
+                "title": "Things Fall Apart",
+                "year": 1958,
+                "isthere": true
+            }
+        },
+        {
+            "type": "books",
+            "id": "Fairy tales",
+            "attributes": {
+                "author": "Christian Andersen",
+                "availablebooks":"1",
+                "country": "Denmark",
+                "image": "https://i.im.ge/2022/07/23/F7yvMG.png",
+                "pages": 784,
+                "title": "Fairy tales",
+                "year": 1836,
+                "isthere": true
+            }
+        },
+        {
+            "type": "books",
+            "id": "The Divine Comedy",
+            "attributes": {
+                "author": "Dante Alighieri",
+                "availablebooks":"7",
+                "country": "Italy",
+                "image": "https://i.im.ge/2022/07/23/F7yGdy.png",
+                "pages": 928,
+                "title": "The Divine Comedy",
+                "year": 1315,
+                "isthere": true
+            }
+        },
+        {
+            "type": "books",
+            "id": "Pride and Prejudice",
+            "attributes": {
+                "author": "Jane Austen",
+                "availablebooks":"2",
+                "country": "UK",
+                "image": "https://i.im.ge/2022/07/23/F7AMfz.png",
+                "pages": 226,
+                "title": "Pride and Prejudice",
+                "year": 1813,
+                "isthere": true
+            }
+        },
+        {
+            "type": "books",
+            "id": "Hunger",
+            "attributes": {
+                "author": "Knut Hamsun",
+                "availablebooks":"4",
+                "country": "Norway",
+                "image": "https://i.im.ge/2022/07/23/F7Ao9F.png",
+                "pages": 176,
+                "title": "Hunger",
+                "year": 1890,
+                "isthere": true
+            }
+        },
+        {
+            "type": "books",
+            "id": "Faust",
+            "attributes": {
+                "author": "Johann Wolfgang",
+                "availablebooks":"5",
+                "country": "Saxe-Weimar",
+                "image": "https://i.im.ge/2022/07/23/F7AOnh.png",
+                "pages": 158,
+                "title": "Faust",
+                "year": 1832,
+                "isthere": true
+            }
+        },
+        {
+            "type": "books",
+            "id": "Dead Souls",
+            "attributes": {
+                "author": "Nikolai Gogol",
+                "availablebooks":"13",
+                "country": "Russia",
+                "image": "https://i.im.ge/2022/07/23/F7A2qM.png",
+                "pages": 432,
+                "title": "Dead Souls",
+                "year": 1842,
+                "isthere": true
+            }
+        }
+    ]
+}

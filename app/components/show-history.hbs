@@ -1,0 +1,42 @@
+<div class="expired-title">Expired List:</div>
+{{#if this.filter.length}}
+<div class="home-container">
+            {{#each this.filter as |element|}}
+                <div class="book" >
+                                <img src={{element.image}} class="books-img">
+                                <div><b><i>{{element.title}}</i></b></div>
+                                <div class="books-details">
+                                    <div><b>Author:</b> {{element.author}}_{{element.country}}</div>
+                                    <div><b>Year of published:</b> {{element.year}}</div>
+                                    <div><b>No of pages:</b> {{element.pages}}</div>
+                                </div>
+                                <button class="borrow-btn" type="button" id="expired-return" {{on "click" (fn this.returnBook element)}}>Return Now</button>       
+                </div>
+            {{/each}}
+</div>
+
+{{else}}
+        <div class="no-one-found">No one Found</div>
+{{/if}}
+
+<div class="history-title">Borrowed Books:</div>
+{{#each this.borrow as |element|}}
+<div class="history-content">
+<div class="history-details"><b>Book Name : </b>{{element.id}},</div>
+<div class="history-details"><b>Borrowed Time : </b>{{element.time}}</div>
+</div>
+{{/each}}
+{{#unless this.borrow.length}}
+    <div class="no-one-found">No one Found</div>
+{{/unless}}
+<div class="history-title">Returned Books:</div>
+{{#each this.return as |element|}}
+<div class="history-content">
+<div class="history-details"><b>Book Name : </b>{{element.id}},</div>
+<div class="history-details"><b>Returned Time : </b>{{element.time}}</div>
+</div>
+{{/each}}
+{{#unless this.return.length}}
+    <div class="no-one-found">No one Found</div>
+{{/unless}}
+<br>

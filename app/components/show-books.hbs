@@ -1,0 +1,98 @@
+  <div class="sticky-container">
+        <div class="home-nav-bar">      
+        <div><b>📖 Library</b></div>
+        <div class="home-nav-bar-right">
+            {{#if @checkroute}}
+            <span {{on "click" this.goHome}}><i class="fa fa-home" title="Home"></i></span>&ensp;
+            {{else}}
+        <span {{on "click" this.goHistory}}> <i class="fa fa-history" title="History"></i> </span>&ensp;
+        {{/if}}
+        <span {{on "click" this.info}}> <i class="fa fa-info-circle" title="Expiry day!"></i> </span>&ensp;
+        <span > <i class="fa fa-power-off" title="Logout" {{on "click" this.signOut}}></i></span>&ensp;
+        <span class="trashbin-icon"><i class="fa fa-trash" title="Delete this Account" {{on "click" this.deleteAccount}}></i></span>
+        </div>
+        </div>
+
+
+ <div class="home-filters">
+    {{#if this.historyOrBorrowIcon}}
+            <span title="Reset" class="show" {{on "click" this.reset}}><i class="fa fa-refresh"></i> </span>
+            <Input @value={{this.query}} type="text" placeholder="Filter by {{this.select}}" class="home-input" {{on "keyup" this.search}}/>&ensp;
+            <select class="home-filters-select" {{on 'change' this.sortBooksBy}} id="show" >
+            <option value="">↕️ Sort By</option>
+            <option value="title">Title</option>
+            <option value="author">Author</option>
+            <option value="year">Year of Published</option>
+            <option value="pages">No of pages</option>
+            </select>
+            <span class="show" {{on "click" this.ascOrDesc}} title="Asc or Desc">
+                {{#if this.sortBtn}}
+                <i class="fa fa-sort-alpha-asc"></i><i class="fa fa-sort-numeric-asc"></i>
+                {{else}}
+                <i class="fa fa-sort-alpha-desc"></i><i class="fa fa-sort-numeric-desc"></i>
+                {{/if}}
+            </span>&ensp;
+    {{/if}}
+            {{#if @checkroute}}
+                {{#if this.historyOrBorrowIcon}}
+                <span class="show" title="History" {{on "click" this.historyOrBorrow}}>📜</span>
+                {{else}}
+                <br>
+                <span class="borrowed-books" {{on "click" this.historyOrBorrow}}>Borrowed Books📚</span>
+                <br>
+                {{/if}}
+            {{/if}}
+            
+ </div>
+
+  </div>
+{{#if this.historyOrBorrowIcon}}
+        {{#if this.results.length}}
+        <div class="home-container">
+            {{#if @checkroute}}
+                {{#each this.results as |element|}}
+                    <div class="book" >
+                                    <img src={{element.image}} class="books-img">
+                                    <div><b><i>{{element.title}}</i></b></div>
+                                    <div class="books-details">
+                                        <div><b>Author:</b> {{element.author}}_{{element.country}}</div>
+                                        <div><b>Year of published:</b> {{element.year}}</div>
+                                        <div><b>No of pages:</b> {{element.pages}}</div>
+                                    </div>
+                                    {{#if @checkroute}}
+                                    <button class="borrow-btn" type="button" {{on "click" (fn this.returnBook element)}}>Return</button>
+                                    {{else}}
+                                    <button class="borrow-btn" type="button" {{on "click" (fn this.borrowBook element)}}>Borrow</button>
+                                    {{/if}}           
+                    </div>
+                {{/each}}
+           {{else}}
+            {{#each this.results as |element|}}
+                {{#if element.availablebooks}}
+                  {{#if element.isthere}}
+                    <div class="book" >
+                                    <img src={{element.image}} class="books-img">
+                                    <div><b><i>{{element.title}}</i></b></div>
+                                    <div class="books-details">
+                                        <div><b>Author:</b> {{element.author}}_{{element.country}}</div>
+                                        <div><b>Year of published:</b> {{element.year}}</div>
+                                        <div><b>No of pages:</b> {{element.pages}}</div>
+                                        <div><b>Available Books:</b> {{element.availablebooks}}</div>
+                                    </div>
+                                    {{#if @checkroute}}
+                                    <button class="borrow-btn" type="button" {{on "click" (fn this.returnBook element)}}>Return</button>
+                                    {{else}}
+                                    <button class="borrow-btn" type="button" {{on "click" (fn this.borrowBook element)}}>Borrow</button>
+                                    {{/if}}           
+                    </div>
+                  {{/if}}
+                {{/if}}
+            {{/each}}
+             {{/if}}
+        </div>
+        {{else}}
+        <div class="no-one-found">No one Found</div>
+        {{/if}}
+{{else}}
+<ShowHistory @books={{this.expiredData}} @userdata={{this.currentUserHistory}}/>
+{{/if}}

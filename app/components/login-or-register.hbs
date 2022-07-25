@@ -1,0 +1,18 @@
+<div class="login-container">
+    <div class="login-title">📖 Library</div>
+    <form class="form-login" {{on "submit" this.abc}}>
+        <img class="login-img">
+        <div class="form-login-label">Username</div>
+        <Input @type="text" class="login-input" placeholder="Enter Username" name="uname" required pattern=".*\S+.*"/>
+        <div class="form-login-label">Password</div>
+        <Input @type="password" class="login-input" placeholder="{{if this.login "Create" "Enter"}} Password" name="psw"  required oninput="this.setCustomValidity('')"/>
+        <button type="submit" class={{if this.register "login-btn" "hide"}} >Login</button>
+        <button type="submit" class={{if this.login "login-btn" "hide"}}>Register</button>
+        <div class={{if this.register "login-changes" "hide"}}>
+            Not a Member? <span class="login-link-changes" {{on "click" this.showRegister}}>Register Now</span>
+        </div>
+        <div class={{if this.login "login-changes" "hide"}}>
+            Already have an account? <span class="login-link-changes" {{on "click" this.showLogin}}>LogIn</span>
+        </div>
+    </form>
+</div>
