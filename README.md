@@ -1,7 +1,33 @@
 # library-app
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+* [Webapp Link](https://library-webapp.netlify.app/)
+
+## Goto Admin Page
+
+UserName : Library
+Password : Lib@123
+
+![Screenshot (141)](https://user-images.githubusercontent.com/60483672/180941239-8ce26a26-6618-4c3f-b303-6857a9db0d6b.png)
+
+## Features
+
+### for Users
+
+*Borrow/Return books
+*Filter books
+*Show History and expired books
+*Delete/logout current user
+*and etc
+
+### for admin
+
+*show users/books history
+*filter users/books
+*add/manage books
+*remove users
+*set expiry date for books
+*and etc
+
 
 ## Prerequisites
 
