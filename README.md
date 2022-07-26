@@ -4,8 +4,8 @@
 
 ## Goto Admin Page
 
-UserName : Library
-Password : Lib@123
+* UserName : Library
+* Password : Lib@123
 
 ![Screenshot (141)](https://user-images.githubusercontent.com/60483672/180941239-8ce26a26-6618-4c3f-b303-6857a9db0d6b.png)
 
@@ -13,20 +13,20 @@ Password : Lib@123
 
 ### for Users
 
-*Borrow/Return books
-*Filter books
-*Show History and expired books
-*Delete/logout current user
-*and etc
+* Borrow/Return books
+* Filter books
+* Show History and expired books
+* Delete/logout current user
+* and etc
 
 ### for admin
 
-*show users/books history
-*filter users/books
-*add/manage books
-*remove users
-*set expiry date for books
-*and etc
+* show users/books history
+* filter users/books
+* add/manage books
+* remove users
+* set expiry date for books
+* and etc
 
 
 ## Prerequisites
